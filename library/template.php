@@ -4,7 +4,7 @@
 <title>Henry J. - Site</title>
 <?php
 // php library loading first
-require("library/phpfunctions.php")
+require("library/phpfunctions.php");
 
 // local php startup code goes here
 // local php startup code goes here
@@ -19,6 +19,6 @@ require("library/phpfunctions.php")
         <p><input type="submit" name="submit" value="Log In"></p>
 </form>-->
 
-<?php myfooter() ?>
+<?php myfooter(); ?>
 </body>
 </html>

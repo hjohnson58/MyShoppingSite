@@ -2,7 +2,7 @@
 <!--  I honor Parkland's core values by affirming that I have 
 followed all academic integrity guidelines for this work.
 Henry Johnson 
-CSC-155-201F_2021SP -->";
+CSC-155-201F_2021SP -->
 <html>
 <head>
 <title>Henry J. - Buy Pickaxes</title>

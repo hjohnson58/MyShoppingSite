@@ -10,11 +10,10 @@ CSC-155-201F_2021SP -->";
 // php library loading first
 require("library/phpfunctions.php");
 
-session_start();
 
 // local php startup code goes here
 // local php startup code goes here
-
+secure_test();
 unset( $_SESSION['user'] );
 header( "refresh:5;url=login.php" );
 

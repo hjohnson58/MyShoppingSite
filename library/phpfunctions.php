@@ -8,14 +8,29 @@ function myfooter() {
         echo "CSC-155-201F_2021SP";
         echo "&nbsp;|&nbsp;";
         echo "<img src='library/images/avatar.png' alt='Gomez' width='100' height='100'>";
-		echo "&nbsp;|&nbsp;";
-		echo "Henry Johnson";
+        echo "&nbsp;|&nbsp;";
+	echo "Henry Johnson";
         echo "</center>";
 }
 function myheader() {
-        echo "<center><strong>";
-        echo "<a href='http://www.csit.parkland.edu/~hjohnson58/csc155labs/php/phpsites/login.php'>Login</a>";
-        echo "&nbsp;|&nbsp;";
+if(isset($_COOKIE["color"])) {
+        $color = $_COOKIE["color"];
+}
+else {
+        $color = "gray";
+}
+
+if(isset($_COOKIE["ordername"])) {
+        $name = $_COOKIE["ordername"];
+}
+else {
+        $name = "Noone";
+}
+        echo "<table cellpadding='4' align='center' bgcolor='$color'><tr><td>";
+        echo "<center><strong>"; 
+        echo "<img src='library/images/mylogo.png' alt='StoreIcon' width='50' height='50'>";
+       // echo "<a href='http://www.csit.parkland.edu/~hjohnson58/csc155labs/php/phpsites/login.php'>Login</a>";
+       // echo "&nbsp;|&nbsp;";
         echo "<a href='http://www.csit.parkland.edu/~hjohnson58/csc155labs/php/phpsites/welcome.php'>Welcome</a>";
         echo "&nbsp;|&nbsp;";
 		foreach (array("swords","staves","grenades","pickaxes") as $weapon) {
@@ -34,8 +49,9 @@ function myheader() {
         echo "&nbsp;|&nbsp;";
         echo "<a href='http://www.csit.parkland.edu/~hjohnson58/csc155labs/php/phpsites/logout.php'>Logout</a>";
         echo "&nbsp;|&nbsp;";
-        echo "<a href=''>Page under Construction</a>";
+        echo "$name was here";
         echo "</strong></center>";
+        echo "</td></td></table>";
 }
 
 function secure_test() {
@@ -106,5 +122,11 @@ function add_or_remove_weapon($weapon) {
 	}
 }
 
+function testinput($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+}
 
 ?>

@@ -129,4 +129,26 @@ function testinput($data) {
         return $data;
 }
 
+
+function lookupUsername($conn, $username) {
+        $stmt = $conn->prepare("SELECT * FROM users WHERE username=?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $num_rows = mysqli_num_rows($result);
+        
+        if($num_rows == 0) {
+                //Does not exist yet
+                return 0;
+        }
+        elseif($num_rows > 1) {
+                //too many results exits
+                header("Location: goodbye.php");
+        }
+        else {
+                //One result means username is taken
+                return $result->fetch_assoc();
+        }
+}
+
 ?>

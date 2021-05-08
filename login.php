@@ -13,6 +13,17 @@ require("library/phpfunctions.php");
 
 session_start();
 
+//Create connection object
+$user = "hjohnson58";
+$conn = mysqli_connect("localhost",$user,$user,$user);
+//Check connection
+if(mysqli_connect_errno()) {
+        echo "<b>Failed to connect to MySQL: " .mysqli_connect_error() ."</b>";
+}
+else {
+        echo "Connect established";
+}
+
 //if (!isset($_SESSION['user'])) {
 //	header("Location: login.php");
 //}
@@ -21,19 +32,20 @@ if (isset($_POST["submit"])) {
         //this script is being reloaded
         if ($_POST["submit"] == "Log In") {
                 //Login attempt
-                if ($_POST["username155"] == "henry" and $_POST["password155"] == "Passw0rd") {
+                $row = lookupUsername($conn, getPost('username155'));
+                if ($row != 0 && password_verify($_POST['password155'], $row['encrypted_password'])) {
                         $_SESSION['user'] = $_POST['username155'];
-						header("Location: welcome.php");
+		        header("Location: welcome.php");
                 }
                 else {
                         echo "Invalid username or password";
                 }
         }
         else if ($_POST["submit"] == "Create New Account") {
-                echo "OK: I created username: 'henry' and password: 'Passw0rd'";               
+                header("Location: newuser.php");               
         }
         else if ($_POST["submit"] == "Forgot your password?") {
-                echo "Hint: try 'henry' and 'Passw0rd'";               
+                echo "Hint: try 'henry' and 'P@ssw0rd'";               
         }
 }
 else {

@@ -32,9 +32,10 @@ if (isset($_POST["submit"])) {
         //this script is being reloaded
         if ($_POST["submit"] == "Log In") {
                 //Login attempt
-                $row = lookupUsername($conn, getPost('username155'));
+                $row = lookupUsername($conn, getPost('username155'), "users");
                 if ($row != 0 && password_verify($_POST['password155'], $row['encrypted_password'])) {
                         $_SESSION['user'] = $_POST['username155'];
+                        $_SESSION['group'] = lookupGroup($conn, getPost('username155'));
 		        header("Location: welcome.php");
                 }
                 else {
@@ -45,7 +46,7 @@ if (isset($_POST["submit"])) {
                 header("Location: newuser.php");               
         }
         else if ($_POST["submit"] == "Forgot your password?") {
-                echo "Hint: try 'henry' and 'P@ssw0rd'";               
+                echo "Hint: try 'public' and '1234'";               
         }
 }
 else {

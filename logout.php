@@ -15,6 +15,11 @@ require("library/phpfunctions.php");
 // local php startup code goes here
 secure_test();
 unset( $_SESSION['user'] );
+unset( $_SESSION['group'] );
+unset( $_SESSION['swords'] );
+unset( $_SESSION['staves'] );
+unset( $_SESSION['grenades'] );
+unset( $_SESSION['pickaxes'] );
 header( "refresh:5;url=login.php" );
 
 ?>

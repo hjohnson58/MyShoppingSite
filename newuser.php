@@ -41,17 +41,23 @@ if (isset($_POST["submit"])) {
                 else if($_POST['password155'] != $_POST['password155confirm']) {
                         $errormsg = 'THE PASSWORDS DO NOT MATCH';
                 }
-                else if(lookupUsername($conn, $_POST['username']) != 0) {
+                else if(lookupUsername($conn, $_POST['username'], "users") != 0) {
                         $errormsg = 'That username was taken';
                 }
                 else {
-                        $stmt = $conn->prepare("INSERT INTO users (username, encrypted_password, email, usergroup) VALUES (?, ?, ?, ?)");
-                        $stmt->bind_param("ssss", $username, $encrypted_password, $email, $usergroup);
+                        $stmt = $conn->prepare("INSERT INTO users (username, encrypted_password, email, usergroup, balance) VALUES (?, ?, ?, ?, ?)");
+                        $stmt->bind_param("ssss", $username, $encrypted_password, $email, $usergroup, $balance);
                         //set param
                         $username = getPost('username155');
                         $encrypted_password = password_hash($_POST['password155'], PASSWORD_DEFAULT);
                         $email = getPost('email155');
                         $usergroup = getPost('usergroup155');
+                        if($usergroup == "admin") {
+                                $balance = 5000;
+                        }
+                        else {
+                                $balance = 100;
+                        }
                         
                         $stmt->execute();
                         header("Location: login.php");

@@ -13,18 +13,35 @@ require("library/phpfunctions.php");
 // local php startup code goes here
 secure_test();
 
+//Create connection object
+$user = "hjohnson58";
+$conn = mysqli_connect("localhost",$user,$user,$user);
+//Check connection
+if(mysqli_connect_errno()) {
+        echo "<b>Failed to connect to MySQL: " .mysqli_connect_error() ."</b>";
+}
+else {
+        echo "Connect established";
+}
+
+/*
 if(isset($_POST['submit'])) {
         setcookie("color", $_POST['color'], time() + (86400 * 30));
         $temp_name = testinput($_POST['ordername']);
         setcookie("ordername", $temp_name, time() + (86400 *30));
-        //addMoney($_POST['money']);
-}
+}*/
+
+
+
 ?>
 </head>
 <?php myheader() ?>
 <body>
-<p style="text-align:center">Welcome to the Store</p>
-<form method='POST' style="position: relative; margin: auto;">
+<p style="text-align:center"><b>USERS</b></p>
+
+<?php printUsers($conn);?>
+
+<!--<form method='POST' style="position: relative; margin: auto;">
 <table border='1' style="text-align:center; margin: auto;">
 <tr><td colspan='2'>Account Settings</td></tr>
 <tr><td>Header Background Color</td><td>
@@ -38,14 +55,7 @@ if(isset($_POST['submit'])) {
 <td><input type ='text' name ='ordername'></td></tr>
 <tr><td colspan='2'><input type='submit' name='submit' value='Set Attributes'></td></tr>
 </table>
-</form>
-
-<div style="text-align:center">
-<p>All Weapons cost 10 money to purchase one</p>
-<p>Normal users get 100 money to start and can earn money back by selling
-weapons</p>
-<p>Admins start with 5000 money and can also give themselves money, and they can still buy/sell weapons.</p>
-</div>
+</form>-->
 <!--<form method='POST'>
         <p>username: <input type='text' name='username155'></p>
         <p>password: <input type='password' name='password155'></p>
